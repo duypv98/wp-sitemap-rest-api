@@ -68,6 +68,8 @@ function wsra_generate_posts_api()
     [, $postArgs] = wsra_get_user_inputs();
     $postUrls = array();
     $query = new WP_Query($postArgs);
+    $home_url = get_home_url( );
+    $site_url = get_site_url( );
 
     while ($query->have_posts()) {
         $query->the_post();
@@ -86,7 +88,7 @@ function wsra_generate_posts_api()
             'url' => $uri,
             'post_modified_date' => get_post_modified_time("Y-m-d\\TH:i:s\\+\\0\\0\\:\\0\\0", true),
             'attached_images' => array_map(function ($post_image) {
-                return $post_image->guid;
+                return str_replace($home_url, $site_url, $post_image->guid);
             }, $attached_images)
         ];
         array_push($postUrls, $tempArray);
