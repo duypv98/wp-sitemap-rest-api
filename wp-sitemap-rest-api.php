@@ -72,9 +72,22 @@ function wsra_generate_posts_api()
     while ($query->have_posts()) {
         $query->the_post();
         $uri = str_replace(home_url(), '', get_permalink());
+        $post_id = get_the_ID();
+        
+        $attached_images = get_posts( array(
+            'post_type' => 'attachment',
+            'post_mime_type' => 'image',
+            'numberposts' => -1,
+            'post_status' => null,
+            'post_parent' => $post_id
+        ) );
+
         $tempArray = [
             'url' => $uri,
             'post_modified_date' => get_the_modified_date(),
+            'attached_images' => array_map(function ($post_image) {
+                return $post_image->guid;
+            }, $attached_images)
         ];
         array_push($postUrls, $tempArray);
     }
