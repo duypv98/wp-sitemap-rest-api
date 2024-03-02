@@ -84,7 +84,7 @@ function wsra_generate_posts_api()
 
         $tempArray = [
             'url' => $uri,
-            'post_modified_date' => get_the_modified_date(),
+            'post_modified_date' => get_post_modified_time("Y-m-d\\TH:i:s\\+\\0\\0\\:\\0\\0", true),
             'attached_images' => array_map(function ($post_image) {
                 return $post_image->guid;
             }, $attached_images)
