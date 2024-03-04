@@ -1,4 +1,4 @@
-# WP Sitemap Rest API Plugin
+  # WP Sitemap Rest API Plugin
 
 This plugin adds REST API end points for generating sitemap for your headless wordpress site.
 
@@ -127,11 +127,13 @@ This will give you a result like below:
 [
   {
     "url": '/blog/hello-world',
-    "post_modified_date": "14 April 2022"
+    "post_modified_date": "2022-04-14T00:10:00+00:00",
+    "attached_images": [] // attached images' urls
   },
   {
     "url": '/blog/how-to-create-a-wp-plugin',
-    "post_modified_date": "14 April 2022"
+    "post_modified_date": "2022-04-14T00:10:00+00:00",
+    "attached_images": []
   }
 ]
 ```
